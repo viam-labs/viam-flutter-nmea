@@ -1,0 +1,1 @@
+go tool cgo -exportheader src/flutter_nmea.h src/main.go 
