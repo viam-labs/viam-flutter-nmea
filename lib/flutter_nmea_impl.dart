@@ -24,9 +24,11 @@ String? _processDataHelper(Uint8List data) {
 
   // Call the FFI function to process the data
   final resultPtr = _bindings.parse_data(cData, length);
+  
 
   String? result;
   if (resultPtr != nullptr) {
+    
     // Convert the result pointer to a Dart string
     result = resultPtr.cast<Utf8>().toDartString();
     // Free the result pointer memory

@@ -3,7 +3,7 @@
 # Run `pod lib lint viam_flutter_nmea.podspec` to validate before publishing.
 #
 Pod::Spec.new do |s|
-  s.name             = 'viam_flutter_nmea'
+  s.name             = 'native_add'
   s.version          = '0.0.1'
   s.summary          = 'A new Flutter FFI plugin project.'
   s.description      = 'A new Flutter FFI plugin project.'

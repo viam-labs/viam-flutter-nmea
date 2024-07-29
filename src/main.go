@@ -28,7 +28,6 @@ func parse_data(data *C.char, length C.int) *C.char {
 
 	parser, err := analyzer.NewParser()
 	if err != nil {
-
 		return C.CString(fmt.Sprintf("Error: %v", err))
 	}
 

@@ -1,4 +1,4 @@
-name: viam_flutter_nmea
+name: native_add
 description: "A new Flutter FFI plugin project."
 version: 0.0.1
 homepage:
@@ -41,12 +41,6 @@ flutter:
       android:
         ffiPlugin: true
       ios:
-        ffiPlugin: true
-      linux:
-        ffiPlugin: true
-      macos:
-        ffiPlugin: true
-      windows:
         ffiPlugin: true
 
   # To add assets to your plugin package, add an assets section, like this:

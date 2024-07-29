@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'dart:typed_data';
 import 'package:flutter/material.dart';
-import 'package:viam_flutter_nmea/flutter_nmea_impl.dart' as flutter_nmea;
+import 'package:native_add/flutter_nmea_impl.dart' as flutter_nmea;
 
 void main() {
   runApp(const MyApp());
@@ -15,15 +15,31 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  final _formKey = GlobalKey<FormState>();
+  final textEditingController = TextEditingController();
   late Map<dynamic, dynamic> result;
+  late Uint8List byteArr;
 
-  final Uint8List byteArr = Uint8List.fromList(utf8.encode(
-      "!PDGY,130567,6,200,255,25631.18,RgPczwYAQnYeAB4AAAADAAAAAABQbiMA"));
+  bool showData = false;
 
   @override
   void initState() {
     super.initState();
-    result = flutter_nmea.processData(byteArr);
+    final byteArrTemp = Uint8List.fromList(utf8.encode(
+        "!PDGY,130567,6,200,255,25631.18,RgPczwYAQnYeAB4AAAADAAAAAABQbiMA"));
+    result = flutter_nmea.processData(byteArrTemp);
+  }
+
+  //!PDGY,130567,6,200,255,25631.18,RgPczwYAQnYeAB4AAAADAAAAAABQbiMA
+
+  void processDataCall() {
+    if (!textEditingController.text.isEmpty) {
+      byteArr = Uint8List.fromList(utf8.encode(textEditingController.text));
+      print(byteArr);
+      setState(() {
+        showData = true;
+      });
+    }
   }
 
   @override
@@ -40,19 +56,53 @@ class _MyAppState extends State<MyApp> {
             padding: const EdgeInsets.all(10),
             child: Column(
               children: [
-                const Text(
-                  'The call to the gonmea library produced.',
-                  style: textStyle,
-                  textAlign: TextAlign.center,
-                ),
-                spacerSmall,
-                Text('$byteArr'),
-                spacerSmall,
-                Text(
-                  '$result',
-                  style: textStyle,
-                  textAlign: TextAlign.center,
-                ),
+                !showData
+                    ? Column(
+                        children: [
+                          Form(
+                            key: _formKey,
+                            child: TextFormField(
+                              validator: (value) => value!.isEmpty
+                                  ? 'Please enter raw data'
+                                  : null,
+                              controller: textEditingController,
+                              decoration: InputDecoration(
+                                floatingLabelBehavior:
+                                    FloatingLabelBehavior.always,
+                                label: const Text('Enter data'),
+                                border: OutlineInputBorder(
+                                    borderRadius:
+                                        BorderRadius.all(Radius.zero)),
+                                isDense: true,
+                              ),
+                            ),
+                          ),
+                          TextButton(
+                              onPressed: processDataCall,
+                              child: const Text("PARSE NMEA"))
+                        ],
+                      )
+                    : Column(
+                        children: [
+                          const Text(
+                            'The call to the gonmea library produced.',
+                            style: textStyle,
+                            textAlign: TextAlign.center,
+                          ),
+                          spacerSmall,
+                          const Text("Raw bytes"),
+                          spacerSmall,
+                          Text('$byteArr'),
+                          spacerSmall,
+                          const Text("NMEA Readings"),
+                          spacerSmall,
+                          Text(
+                            '$result',
+                            style: textStyle,
+                            textAlign: TextAlign.center,
+                          ),
+                        ],
+                      ),
               ],
             ),
           ),
