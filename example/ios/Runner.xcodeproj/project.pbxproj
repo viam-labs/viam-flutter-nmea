@@ -9,8 +9,7 @@
 /* Begin PBXBuildFile section */
 		1498D2341E8E89220040F4C2 /* GeneratedPluginRegistrant.m in Sources */ = {isa = PBXBuildFile; fileRef = 1498D2331E8E89220040F4C2 /* GeneratedPluginRegistrant.m */; };
 		1BA53A9FBB5BB07EF5276720 /* Pods_Runner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 048246CF5CFAD0F038980A03 /* Pods_Runner.framework */; };
-		274306C42C595BEC00284D78 /* libresolv.9.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 274306C32C595BDB00284D78 /* libresolv.9.tbd */; };
-		274306C52C595BF600284D78 /* libresolv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 274306C22C595BDB00284D78 /* libresolv.tbd */; };
+		2794BDEF2C5970E900768D6D /* libresolv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 274306C22C595BDB00284D78 /* libresolv.tbd */; };
 		331C808B294A63AB00263BE5 /* RunnerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331C807B294A618700263BE5 /* RunnerTests.swift */; };
 		3B3967161E833CAA004F5970 /* AppFrameworkInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3B3967151E833CAA004F5970 /* AppFrameworkInfo.plist */; };
 		3DBD450E1C440EEA45A64416 /* Pods_RunnerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E62D416DBB85CFE6BDC76CE /* Pods_RunnerTests.framework */; };
@@ -76,9 +75,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				274306C42C595BEC00284D78 /* libresolv.9.tbd in Frameworks */,
+				2794BDEF2C5970E900768D6D /* libresolv.tbd in Frameworks */,
 				1BA53A9FBB5BB07EF5276720 /* Pods_Runner.framework in Frameworks */,
-				274306C52C595BF600284D78 /* libresolv.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

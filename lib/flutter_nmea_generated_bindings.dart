@@ -35,6 +35,30 @@ class FlutterNmea {
   late final _enforce_binding =
       _enforce_bindingPtr.asFunction<void Function()>();
 
+  void res_9_nclose() {
+    return _res_9_nclose();
+  }
+
+  late final _res_9_nclosePtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function()>>('res_9_nclose');
+  late final _res_9_nclose = _res_9_nclosePtr.asFunction<void Function()>();
+
+  void res_9_ninit() {
+    return _res_9_ninit();
+  }
+
+  late final _res_9_ninitPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function()>>('res_9_ninit');
+  late final _res_9_ninit = _res_9_ninitPtr.asFunction<void Function()>();
+
+  void res_9_nsearch() {
+    return _res_9_nsearch();
+  }
+
+  late final _res_9_nsearchPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function()>>('res_9_nsearch');
+  late final _res_9_nsearch = _res_9_nsearchPtr.asFunction<void Function()>();
+
   ffi.Pointer<ffi.Char> parse_data(
     ffi.Pointer<ffi.Char> data,
     int length,

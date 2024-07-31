@@ -17,7 +17,7 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   final _formKey = GlobalKey<FormState>();
   final textEditingController = TextEditingController();
-  late Map<dynamic, dynamic> result;
+  late String result;
   late Uint8List byteArr;
 
   bool showData = false;
@@ -25,12 +25,22 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
-    final byteArrTemp = Uint8List.fromList(utf8.encode(
-        "!PDGY,130567,6,200,255,25631.18,RgPczwYAQnYeAB4AAAADAAAAAABQbiMA"));
-    result = flutter_nmea.processData(byteArrTemp);
-  }
 
-  //!PDGY,130567,6,200,255,25631.18,RgPczwYAQnYeAB4AAAADAAAAAABQbiMA
+    // Test data for
+    List<String> dataPoints = [
+    '{"0EEFF-00": "/+4AAGRD/j/yAKlmAAAAALAiDwAAAAAACAD/AAAABgB9gCQiAIIywA=="}',
+    '{"1FB12-16": "EvsBAGRD/j/BAKlmAAAAAIk5CgAAAAAAIwD/ABYABgAYQMfxFSVHUk1EQEBFAP///////xgBWgAoALQAAAAAAAPh/w=="}',
+    '{"0EEFF-09": "/+4AAGRD/j854qdmAAAAAKYuBwAAAAAACAD/AAkABgCP87AcAILcwA=="}',
+    '{"1F014-1C": "FPABALg+gD9dtqdmAAAAALDoBQAAAAAAhgD/ABwABgA0CBMZR1BTTUFQIDg2MjIA//////////////////////////8zMy40MAD//////////////////////////////////zEuMAD/////////////////////////////////////MzQ1MDQ0OTU5NAD///////////////////////////8CAg=="}',
+    ];
+
+    for (var data in dataPoints) {
+      List<String> key = jsonDecode(data).keys.toList();
+      print('Processing data: $key');
+      byteArr = Uint8List.fromList(utf8.encode(data));
+      result = flutter_nmea.processData(byteArr);
+    }
+  }
 
   void processDataCall() {
     if (!textEditingController.text.isEmpty) {
@@ -66,10 +76,10 @@ class _MyAppState extends State<MyApp> {
                                   ? 'Please enter raw data'
                                   : null,
                               controller: textEditingController,
-                              decoration: InputDecoration(
+                              decoration: const InputDecoration(
                                 floatingLabelBehavior:
                                     FloatingLabelBehavior.always,
-                                label: const Text('Enter data'),
+                                label: Text('Enter data'),
                                 border: OutlineInputBorder(
                                     borderRadius:
                                         BorderRadius.all(Radius.zero)),
@@ -101,6 +111,7 @@ class _MyAppState extends State<MyApp> {
                             style: textStyle,
                             textAlign: TextAlign.center,
                           ),
+                          
                         ],
                       ),
               ],

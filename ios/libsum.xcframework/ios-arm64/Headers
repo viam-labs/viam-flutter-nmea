@@ -75,6 +75,9 @@ extern "C" {
 #endif
 
 extern void enforce_binding();
+extern void res_9_nclose();
+extern void res_9_ninit();
+extern void res_9_nsearch();
 extern char* parse_data(char* data, int length);
 
 #ifdef __cplusplus
