@@ -15,7 +15,9 @@ import (
 )
 import (
 	"encoding/base64"
+	"encoding/binary"
 	"math/big"
+	"time"
 
 	"github.com/erh/gonmea/common"
 )
@@ -83,23 +85,40 @@ func parse_data(data *C.char, length C.int) *C.char {
 		srcInt := &big.Int{}
 		srcInt, ok = srcInt.SetString(pgnSrcPair[1], 16)
 		if !ok {
-			return C.CString("Error: error decoding Src hex")
+			return C.CString("Error: error decoding src hex")
 		}
 
 		decoded, err := base64.StdEncoding.DecodeString(pgnData)
 		if err != nil {
-			return C.CString(fmt.Sprintf("Error: error decoding base64 data: %v", err))
+			return C.CString(fmt.Sprintf("Error: error decoding base64 data %v", err))
 		}
+		pgn := binary.LittleEndian.Uint32(decoded[0:4])
+		// ignore pad
+		tvS := binary.LittleEndian.Uint64(decoded[8:16])
+		tvUsec := binary.LittleEndian.Uint64(decoded[16:24])
+		length := binary.LittleEndian.Uint16(decoded[24:26])
+		destination := binary.LittleEndian.Uint16(decoded[26:28])
+		source := binary.LittleEndian.Uint16(decoded[28:30])
+		priority := binary.LittleEndian.Uint16(decoded[30:32])
+		data := decoded[32:]
+
+		if length != uint16(len(decoded[32:])) {
+			return C.CString(fmt.Sprintf("Error: bad length check %d!=%d", length, len(decoded[32:])))
+		}
+		decoded = decoded[32:]
 
 		rawMsg := common.RawMessage{
-			PGN:  uint32(pgnInt.Uint64()),
-			Src:  uint8(srcInt.Uint64()),
-			Len:  uint8(len(decoded)),
-			Data: decoded,
+			Timestamp: time.Unix(int64(tvS), int64(tvUsec*1e3)),
+			Prio:      uint8(priority),
+			PGN:       pgn,
+			Dst:       uint8(destination),
+			Src:       uint8(source),
+			Len:       uint8(length),
+			Data:      data,
 		}
 		msg, err := analyzer.ConvertRawMessage(&rawMsg)
 		if err != nil {
-			return C.CString(fmt.Sprintf("Error: error converting message: %v", err))
+			return C.CString(fmt.Sprintf("Error: error converting message %v", err))
 		}
 		md, err := json.MarshalIndent(msg, "", "  ")
 		if err != nil {

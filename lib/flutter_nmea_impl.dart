@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:ffi';
 import 'dart:io';
 import 'dart:typed_data';
@@ -40,9 +41,21 @@ String? _processDataHelper(Uint8List data) {
   return result;
 }
 
-String processData(Uint8List data) {
+Map<dynamic, dynamic> _stringToMap(String dartString) {
+  try {
+    final jsonString = json.decode(dartString);
+    return jsonString;
+  } catch (e) {
+    return {};
+  }
+}
+
+Map<dynamic, dynamic> processData(Uint8List data) {
   final readingsString = _processDataHelper(data);
-  return readingsString ?? '';
+  if (readingsString != null) {
+    return _stringToMap(readingsString);
+  }
+  return {};
 }
 
 const String _libName = 'native_add';
