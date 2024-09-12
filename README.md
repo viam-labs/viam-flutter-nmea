@@ -75,14 +75,6 @@ To avoid writing these by hand, they are generated from the header file
 (`src/gonmea_flutter.h`) by `package:ffigen`.
 Regenerate the bindings by running `flutter pub run ffigen --config ffigen.yaml`.
 
-## Invoking native code
-
-Very short-running native functions can be directly invoked from any isolate.
-For example, see `sum` in `lib/gonmea_flutter.dart`.
-
-Longer-running functions should be invoked on a helper isolate to avoid
-dropping frames in Flutter applications.
-For example, see `sumAsync` in `lib/gonmea_flutter.dart`.
 
 ## Flutter help
 

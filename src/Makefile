@@ -1,7 +1,7 @@
 ANDROID_OUT=../android/src/main/jniLibs
 ANDROID_SDK=$(HOME)/Library/Android/sdk
 NDK_BIN=$(ANDROID_SDK)/ndk/23.1.7779620/toolchains/llvm/prebuilt/darwin-x86_64/bin
-LIB_NAME=libsum
+LIB_NAME=native_add
 
 android-armv7a:
 	CGO_ENABLED=1 \

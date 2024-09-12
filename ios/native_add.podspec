@@ -15,7 +15,7 @@ Pod::Spec.new do |s|
   s.source_files = 'Classes/**/*'
   s.public_header_files = 'Classes/**/*.h'
 
-  s.vendored_frameworks = 'libsum.xcframework'
+  s.vendored_frameworks = 'native_add.xcframework'
 
   s.dependency 'Flutter'
   s.platform = :ios, '11.0'
