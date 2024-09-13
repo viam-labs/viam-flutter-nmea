@@ -4,9 +4,20 @@ A way to use the gonmea package in Flutter
 
 ## Getting Started
 
-This project is a starting point for a Flutter
-[FFI plugin](https://docs.flutter.dev/development/platform-integration/c-interop),
-a specialized package that includes native code directly invoked with Dart FFI.
+This package contains the Go implementation where it is using the gonmea package to parse nmea readings. To build an app that consumes this package, do the following:
+
+* Run `./build_go.sh` to generate the header file which will be used by the ffigen package to generate dart bindings.
+
+* `cd src` then run `make ios` to generate the ios binaries for both simulator and physical iPhone devices. 
+
+* Run `make android` to generate binaries for different android architectures.
+
+* In the root directory of the project, run `flutter pub run ffigen --config ffigen.yaml` to auto-generate the dart bindings from the header file
+
+* All the implementation for the public facing API exists in the lib/flutter_nmea_impl.dart file.
+
+* There is an example app to help test the implementation. `cd example && flutter run` to run the example app
+
 
 ## Project structure
 
