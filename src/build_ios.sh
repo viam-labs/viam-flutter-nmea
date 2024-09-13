@@ -22,4 +22,4 @@ CLANG=$(xcrun --sdk "$SDK" --find clang)
 CC="$CLANG -target $TARGET -isysroot $SDK_PATH $@"
 export CC
 
-go build -trimpath -buildmode=c-archive -o ${LIB_NAME}_${GOARCH}_${SDK}.a
+go build -ldflags "-w -s" -trimpath -buildmode=c-archive -o ${LIB_NAME}_${GOARCH}_${SDK}.a
