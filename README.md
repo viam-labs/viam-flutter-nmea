@@ -4,7 +4,7 @@ A way to use the gonmea package in Flutter
 
 ## Getting Started
 
-This package contains the Go implementation where it is using the gonmea package to parse nmea readings. To build an app that consumes this package, do the following:
+This package contains the [Go implementation](https://github.com/erh/gonmea) where it is using the gonmea package to parse nmea readings. To build an app that consumes this package, do the following:
 
 * Run `./build_go.sh` to generate the header file which will be used by the ffigen package to generate dart bindings.
 
