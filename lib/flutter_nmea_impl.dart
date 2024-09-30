@@ -24,11 +24,9 @@ String? _processDataHelper(Uint8List data) {
 
   // Call the FFI function to process the data
   final resultPtr = _bindings.parse_data(cData, length);
-  
 
   String? result;
   if (resultPtr != nullptr) {
-    
     // Convert the result pointer to a Dart string
     result = resultPtr.cast<Utf8>().toDartString();
     // Free the result pointer memory
@@ -58,7 +56,7 @@ Map<dynamic, dynamic> processData(Uint8List data) {
   return {};
 }
 
-const String _libName = 'native_add';
+const String _libName = 'viam_flutter_nmea';
 
 /// The dynamic library in which the symbols for [NativeAddBindings] can be found.
 final DynamicLibrary _dylib = () {

@@ -1,4 +1,4 @@
-package com.example.native_add_example
+package com.example.viam_flutter_nmea_example
 
 import io.flutter.embedding.android.FlutterActivity
 

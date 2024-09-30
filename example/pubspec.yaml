@@ -31,7 +31,7 @@ dependencies:
   flutter:
     sdk: flutter
 
-  native_add:
+  viam_flutter_nmea:
     # When depending on this package from a real application you should use:
     #   viam_flutter_nmea: ^x.y.z
     # See https://dart.dev/tools/pub/dependencies#version-constraints

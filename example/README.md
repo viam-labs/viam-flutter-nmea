@@ -1,6 +1,6 @@
-# native_add_example
+# viam_flutter_nmea_example
 
-Demonstrates how to use the native_add plugin.
+Demonstrates how to use the viam_flutter_nmea plugin.
 
 ## Getting Started
 
