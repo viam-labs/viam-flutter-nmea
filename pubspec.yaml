@@ -1,6 +1,6 @@
 name: viam_flutter_nmea
 description: "A new Flutter FFI plugin project."
-version: 0.0.1
+version: 0.0.3
 homepage:
 
 environment:
