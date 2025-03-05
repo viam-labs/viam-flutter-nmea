@@ -19,7 +19,7 @@ import (
 	"math/big"
 	"time"
 
-	"github.com/erh/gonmea/common"
+	"github.com/erh/viamboat/gonmea/common"
 )
 
 //export enforce_binding
@@ -59,7 +59,8 @@ func parse_data(data *C.char, length C.int) *C.char {
 			if len(line) == 0 {
 				continue
 			}
-			msg, _, err := analyzer.ParseMessage(line)
+			// TODO: Validate .ParseMessage(line) replaced by .ParseTextMessage(string(line))
+			msg, _, err := analyzer.ParseTextMessage(string(line))
 
 			if err != nil {
 				return C.CString(fmt.Sprintf("Error: %v", err))
@@ -116,7 +117,8 @@ func parse_data(data *C.char, length C.int) *C.char {
 			Len:       uint8(length),
 			Data:      data,
 		}
-		msg, err := analyzer.ConvertRawMessage(&rawMsg)
+		// TODO: Newly added insufficient data return value handling
+		msg, _, err := analyzer.ConvertRawMessage(&rawMsg)
 		if err != nil {
 			return C.CString(fmt.Sprintf("Error: error converting message %v", err))
 		}

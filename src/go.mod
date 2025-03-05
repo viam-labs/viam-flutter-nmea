@@ -4,10 +4,7 @@ go 1.23
 
 toolchain go1.23.2
 
-require (
-	github.com/erh/gonmea v0.0.0-20241021130807-5759ea9c75b0
-	github.com/erh/viamboat v0.0.0-00010101000000-000000000000
-)
+require github.com/erh/viamboat v0.0.0-00010101000000-000000000000
 
 replace github.com/erh/viamboat => github.com/viam-labs/viamboat v0.0.0-20250226213122-94eedee48b7d
 
