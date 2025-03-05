@@ -30,3 +30,7 @@ build/
 
 *_obj/
 *.a
+
+
+# Golang
+src/vendor/
