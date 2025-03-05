@@ -11,7 +11,7 @@ import (
 	"strings"
 	"unsafe"
 
-	"github.com/erh/gonmea/analyzer"
+	"github.com/erh/viamboat/gonmea/analyzer"
 )
 import (
 	"encoding/base64"
@@ -60,7 +60,7 @@ func parse_data(data *C.char, length C.int) *C.char {
 				continue
 			}
 			msg, _, err := analyzer.ParseMessage(line)
-			
+
 			if err != nil {
 				return C.CString(fmt.Sprintf("Error: %v", err))
 			}
